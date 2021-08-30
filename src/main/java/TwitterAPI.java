@@ -4,11 +4,11 @@ import io.github.redouane59.twitter.signature.TwitterCredentials;
 public class TwitterAPI {
     private TwitterClient twitterClient;
 
-    public TwitterAPI(){
+    public TwitterAPI() {
         this.twitterClient = initWeatherBot();
     }
 
-    private TwitterClient initWeatherBot(){
+    private TwitterClient initWeatherBot() {
         TwitterClient twitterClient = new TwitterClient(TwitterCredentials.builder()
                 .accessToken("ACCESS_TOKEN")
                 .accessTokenSecret("ACCESS_TOKEN_SECRET")
@@ -18,7 +18,7 @@ public class TwitterAPI {
         return twitterClient;
     }
 
-    public void postTweet(String text){
+    public void postTweet(String text) {
         this.twitterClient.postTweet(text);
     }
 }

@@ -8,7 +8,7 @@ public class WeatherAPI {
     private JSONObject response;
     private String weather;
 
-    public WeatherAPI(){
+    public WeatherAPI() {
         this.makeConnection();
         this.weather = this.simplifyResponse();
     }
@@ -18,7 +18,7 @@ public class WeatherAPI {
                     Description: x
                     Humidity: x
     */
-    private String simplifyResponse(){
+    private String simplifyResponse() {
         JSONObject list = this.response.getJSONArray("list").getJSONObject(0);
         JSONObject main = list.getJSONObject("main");
         //API returns value in kelvin, formula for kelvin to Celsius is C = K - 273.15
@@ -28,7 +28,7 @@ public class WeatherAPI {
         return String.format("The weather for the coming 3 hours: \n Temperature: %d°C \n Description: %s \n Humidity: %d%%", temperature, description, humidity);
     }
 
-    private void makeConnection(){
+    private void makeConnection() {
         try {
             URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?zip=4826,NL&appid=API_KEY");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -39,15 +39,14 @@ public class WeatherAPI {
                 BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 this.response = (new JSONObject(br.readLine()));
             }
-
             con.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public String getWeather(){
-        if(this.weather != null){
+    public String getWeather() {
+        if (this.weather != null) {
             return this.weather;
         } else {
             return "Couldn't fetch weather";

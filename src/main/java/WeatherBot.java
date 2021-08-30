@@ -5,13 +5,13 @@ import java.util.concurrent.TimeUnit;
 public class WeatherBot {
     private WeatherAPI weather;
     private TwitterAPI twitter;
-    public WeatherBot(){
+    public WeatherBot() {
         this.weather = new WeatherAPI();
         this.twitter = new TwitterAPI();
         botLoop();
     }
 
-    private void botLoop(){
+    private void botLoop() {
         ScheduledExecutorService executor = Executors
                 .newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(new Runnable() {
