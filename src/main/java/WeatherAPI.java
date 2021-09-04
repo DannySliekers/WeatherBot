@@ -5,6 +5,7 @@ import java.net.*;
 import org.json.JSONObject;
 
 public class WeatherAPI {
+    private static final double KELVIN = 273.15;
     private JSONObject response;
     private String weather;
 
@@ -22,7 +23,7 @@ public class WeatherAPI {
         JSONObject list = this.response.getJSONArray("list").getJSONObject(0);
         JSONObject main = list.getJSONObject("main");
         //API returns value in kelvin, formula for kelvin to Celsius is C = K - 273.15
-        int temperature = (int) Math.round(main.getDouble("temp") - 273.15);
+        int temperature = (int) Math.round(main.getDouble("temp") - KELVIN);
         String description = list.getJSONArray("weather").getJSONObject(0).getString("description");
         int humidity = main.getInt("humidity");
         return String.format("The weather for the coming 3 hours: \n Temperature: %d°C \n Description: %s \n Humidity: %d%%", temperature, description, humidity);
